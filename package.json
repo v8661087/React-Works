@@ -2,7 +2,7 @@
   "name": "react-todolist",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://v8661087.github.io/React-ToDo-List/",
+  "homepage": "https://v8661087.github.io/React-To-Do-List/",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "node-sass": "^4.12.0",
