@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/React-To-Do-List/precache-manifest.97b4c0b9298e8e5d58d4b8030e651ab9.js"
+  "/React-Works/precache-manifest.b7ea62ae2d71fbf888630e73dc682bbf.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/React-To-Do-List/index.html", {
+workbox.routing.registerNavigationRoute("/React-Works/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
