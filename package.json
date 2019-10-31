@@ -4,6 +4,9 @@
   "private": true,
   "homepage": "https://v8661087.github.io/React-Works/",
   "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.22",
+    "emotion-theming": "^10.0.19",
     "gh-pages": "^2.1.1",
     "node-sass": "^4.12.0",
     "react": "^16.10.0",
