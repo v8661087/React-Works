@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "./Auth.js";
-import firebase from "../../firebase"
+import firebase from "../../firebase";
 
 function Comment({ comment, onDelete }) {
   const [timeString, setTimeString] = useState("");
   const { currentUser } = useContext(AuthContext);
-  const [modal,setModal] = useState(false)
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     _updateTimeString();
@@ -23,8 +23,12 @@ function Comment({ comment, onDelete }) {
     );
   }
   function handleDelete() {
-    firebase.firestore().collection("comments").doc(comment.id).delete()
-    setModal(false)
+    firebase
+      .firestore()
+      .collection("comments")
+      .doc(comment.id)
+      .delete();
+    setModal(false);
   }
   return (
     <div className="comment">
@@ -34,7 +38,7 @@ function Comment({ comment, onDelete }) {
       <p>{comment.content}</p>
       {currentUser ? (
         currentUser.email === comment.username ? (
-          <span className="comment-delete" onClick={()=>setModal(true)}>
+          <span className="comment-delete" onClick={() => setModal(true)}>
             删除
           </span>
         ) : (
@@ -43,13 +47,21 @@ function Comment({ comment, onDelete }) {
       ) : (
         ""
       )}
-      {modal ? <div className="modal">
-        <div><h1>確定要刪除嗎？</h1></div>
-        
-      <div className="modal-button" onClick={()=>setModal(false)}>取消</div>
-      <div className="modal-button delete" onClick={handleDelete}>
+      {modal ? (
+        <div className="modal">
+          <div>
+            <h1>確定要刪除嗎？</h1>
+          </div>
+          <div className="modal-button" onClick={() => setModal(false)}>
+            取消
+          </div>
+          <div className="modal-button delete" onClick={handleDelete}>
             删除
-          </div></div> : ""}
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       <span className="comment-createdtime">{timeString}</span>
     </div>
   );

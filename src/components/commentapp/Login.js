@@ -31,14 +31,23 @@ const Login = ({ history }) => {
       <form action="" className="login-form" onSubmit={handleLogin}>
         <h1>登入</h1>
         <div className="login-form__field">
-          <input name="email" type="email" placeholder="Email" autoComplete="off"/>
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            autoComplete="off"
+          />
         </div>
         <div className="login-form__field">
           <input name="password" type="password" placeholder="Password" />
         </div>
-        <button type="submit" className="login-form__button">登入</button>
+        <button type="submit" className="login-form__button">
+          登入
+        </button>
         <div className="bottom-text">
-         <li>還沒帳號嗎? <Link to="./SignUp">註冊</Link></li> 
+          <li>
+            還沒帳號嗎? <Link to="./SignUp">註冊</Link>
+          </li>
         </div>
       </form>
     </div>

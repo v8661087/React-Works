@@ -10,7 +10,7 @@ function CommentApp() {
   const [username, setUsername] = useState("");
   const [content, setContent] = useState("");
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   const { currentUser } = useContext(AuthContext);
   const fetchData = useCallback(() => {
@@ -24,7 +24,7 @@ function CommentApp() {
             ...doc.data()
           }));
           setComments(data);
-          setLoading(false)
+          setLoading(false);
           console.log("fetchData");
         });
     };
@@ -53,16 +53,24 @@ function CommentApp() {
     }
   }
 
-  if(loading){
-    return <h1>Loading...</h1>
+  if (loading) {
+    return <h1>Loading...</h1>;
   }
   return (
     <div className="commentapp">
       {currentUser ? (
-        <li className="link" onClick={() => {firebase.auth().signOut();setUsername("")}}><Link>登出</Link></li>
+        <li
+          className="link"
+          onClick={() => {
+            firebase.auth().signOut();
+            setUsername("");
+          }}
+        >
+          <Link>登出</Link>
+        </li>
       ) : (
         <>
-        <li className="link">
+          <li className="link">
             <Link to="./CommentApp/SignUp">註冊</Link>
           </li>
           <li className="link">
@@ -78,10 +86,7 @@ function CommentApp() {
         content={content}
       />
       {comments.map(comment => (
-        <Comment
-          comment={comment}
-          key={comment.id}
-        />
+        <Comment comment={comment} key={comment.id} />
       ))}
     </div>
   );
