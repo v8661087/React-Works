@@ -21,6 +21,7 @@ code {
 li{
   list-style-type: none;
   margin: 0 9px;
+  text-align: center;
 }
 li a{
   text-decoration: none;

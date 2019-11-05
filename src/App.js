@@ -3,6 +3,7 @@ import "./todolist.scss";
 import "./commentApp.scss";
 import { HashRouter} from "react-router-dom";
 import NavBar from "./components/NavBar";
+
 function App() {
     return (
         <HashRouter>

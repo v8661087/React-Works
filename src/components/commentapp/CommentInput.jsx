@@ -1,23 +1,31 @@
-import React from "react";
-
-function CommentInput(props) {
+import React, { useContext } from "react";
+import { AuthContext } from "./Auth";
+function CommentInput({
+  username,
+  content,
+  onNameChange,
+  onCommentChange,
+  onSubmit
+}) {
+  const { currentUser } = useContext(AuthContext);
   return (
     <div className="commentapp-header">
       <div className="commentapp-field">
         <span className="commentapp-field-name">用戶名:</span>
-        <div className="commentapp-field-input">
-          <input type="text"
-           onChange={props.onNameChange}
-           onBlur={props.onBlur}
-           value={props.username} />
-        </div>
+        {currentUser ? (
+          <b> {username}</b>
+        ) : (
+          <div className="commentapp-field-input">
+            <input type="text" onChange={onNameChange} value={username} />
+          </div>
+        )}
       </div>
       <div className="commentapp-field">
         <span className="commentapp-field-name">評論內容:</span>
         <div className="commentapp-field-input">
           <textarea
-            onChange={props.onCommentChange}
-            value={props.content}
+            onChange={onCommentChange}
+            value={content}
             cols="30"
             rows="10"
             autoFocus
@@ -25,7 +33,7 @@ function CommentInput(props) {
         </div>
       </div>
       <div className="commentapp-field-button">
-        <button onClick={props.onSubmit}>發佈</button>
+        <button onClick={onSubmit}>發佈</button>
       </div>
     </div>
   );

@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "./Auth.js";
+import firebase from "../../firebase"
 
-function Comment(props) {
+function Comment({ comment, onDelete }) {
   const [timeString, setTimeString] = useState("");
+  const { currentUser } = useContext(AuthContext);
+  const [modal,setModal] = useState(false)
+
   useEffect(() => {
     _updateTimeString();
     const _timer = setInterval(_updateTimeString, 5000);
     return () => clearInterval(_timer);
   });
   function _updateTimeString() {
-    const duration = (+Date.now() - props.comment.createdTime) / 1000;
+    const duration = (+Date.now() - comment.createdTime) / 1000;
     setTimeString(
       duration > 60
         ? duration > 3600
@@ -17,27 +22,35 @@ function Comment(props) {
         : `${Math.round(Math.max(duration, 1))}秒前`
     );
   }
-  function _getProcessedContent(content){
-    return content.replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;")
-    .replace(/`([\S\s]+?)`/g, '<code>$1</code>')
+  function handleDelete() {
+    firebase.firestore().collection("comments").doc(comment.id).delete()
+    setModal(false)
   }
   return (
     <div className="comment">
       <div className="comment-user">
-        <span>{props.comment.username} </span>：
+        <span>{comment.username}： </span>
       </div>
-      <p dangerouslySetInnerHTML={{__html:_getProcessedContent(props.comment.content)}} />
+      <p>{comment.content}</p>
+      {currentUser ? (
+        currentUser.email === comment.username ? (
+          <span className="comment-delete" onClick={()=>setModal(true)}>
+            删除
+          </span>
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
+      {modal ? <div className="modal">
+        <div><h1>確定要刪除嗎？</h1></div>
+        
+      <div className="modal-button" onClick={()=>setModal(false)}>取消</div>
+      <div className="modal-button delete" onClick={handleDelete}>
+            删除
+          </div></div> : ""}
       <span className="comment-createdtime">{timeString}</span>
-      <span
-        className="comment-delete"
-        onClick={() => props.onDelete(props.comment)}
-      >
-        删除
-      </span>
     </div>
   );
 }
