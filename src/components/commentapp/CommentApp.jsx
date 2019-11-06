@@ -18,6 +18,7 @@ function CommentApp() {
       firebase
         .firestore()
         .collection("comments")
+        .orderBy("createdTime","desc")
         .onSnapshot(snapshot => {
           const data = snapshot.docs.map(doc => ({
             id: doc.id,
@@ -48,7 +49,7 @@ function CommentApp() {
       firebase
         .firestore()
         .collection("comments")
-        .add({ username, content, createdTime: +new Date() });
+        .add({ username, content, createdTime: new Date() });
       setContent("");
     }
   }

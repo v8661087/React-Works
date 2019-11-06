@@ -13,11 +13,13 @@ function Comment({ comment }) {
     return () => clearInterval(_timer);
   });
   function _updateTimeString() {
-    const duration = (+Date.now() - comment.createdTime) / 1000;
+    const duration = (+Date.now() - (comment.createdTime.seconds*1000)) / 1000;
     setTimeString(
       duration > 60
         ? duration > 3600
-          ? `${Math.round(duration / 60 / 60)}小時前`
+          ? duration > 86400
+            ? `${comment.createdTime.toLocaleDateString()}`
+            : `${Math.round(duration / 60 / 60)}小時前`
           : `${Math.round(duration / 60)}分鐘前`
         : `${Math.round(Math.max(duration, 1))}秒前`
     );
