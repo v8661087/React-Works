@@ -4,6 +4,8 @@ import "./commentApp.scss";
 import { HashRouter} from "react-router-dom";
 import NavBar from "./components/NavBar";
 
+console.log("更新日期 191106")
+
 function App() {
     return (
         <HashRouter>

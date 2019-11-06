@@ -1,18 +1,18 @@
 import React, { useCallback, useContext } from "react";
-import { withRouter } from "react-router";
-import firebase from "../../firebase";
-import { AuthContext } from "./Auth.js";
-import { Redirect, Link } from "react-router-dom";
+import { withRouter, Redirect } from "react-router";
+import { Link } from "react-router-dom";
+import firebase from "../../firebase.js";
+import { AuthContext } from "./Auth";
 
-const SignUp = ({ history }) => {
-  const handleSignUp = useCallback(
+const Login = ({ history }) => {
+  const handleLogin = useCallback(
     async event => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
         await firebase
           .auth()
-          .createUserWithEmailAndPassword(email.value, password.value);
+          .signInWithEmailAndPassword(email.value, password.value);
         history.push("/CommentApp");
       } catch (error) {
         alert(error);
@@ -20,7 +20,6 @@ const SignUp = ({ history }) => {
     },
     [history]
   );
-
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
@@ -29,8 +28,8 @@ const SignUp = ({ history }) => {
 
   return (
     <div className="login-page">
-      <form action="" className="login-form" onSubmit={handleSignUp}>
-        <h1>註冊</h1>
+      <form action="" className="login-form" onSubmit={handleLogin}>
+        <h1>登入</h1>
         <div className="login-form__field">
           <input
             name="email"
@@ -43,11 +42,11 @@ const SignUp = ({ history }) => {
           <input name="password" type="password" placeholder="Password" />
         </div>
         <button type="submit" className="login-form__button">
-          註冊
+          登入
         </button>
         <div className="bottom-text">
           <li>
-            已經有帳號了? <Link to="./Login">登入</Link>
+            還沒帳號嗎? <Link to="./SignUp">註冊</Link>
           </li>
         </div>
       </form>
@@ -55,4 +54,4 @@ const SignUp = ({ history }) => {
   );
 };
 
-export default withRouter(SignUp);
+export default withRouter(Login);

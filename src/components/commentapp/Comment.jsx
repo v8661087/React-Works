@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { AuthContext } from "./Auth.js";
+import { AuthContext } from "./Auth";
 import firebase from "../../firebase";
 
-function Comment({ comment, onDelete }) {
+function Comment({ comment }) {
   const [timeString, setTimeString] = useState("");
   const { currentUser } = useContext(AuthContext);
   const [modal, setModal] = useState(false);

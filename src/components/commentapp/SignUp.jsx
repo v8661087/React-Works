@@ -1,18 +1,18 @@
 import React, { useCallback, useContext } from "react";
-import { withRouter, Redirect } from "react-router";
-import { Link } from "react-router-dom";
-import firebase from "../../firebase.js";
-import { AuthContext } from "./Auth.js";
+import { withRouter } from "react-router";
+import firebase from "../../firebase";
+import { AuthContext } from "./Auth";
+import { Redirect, Link } from "react-router-dom";
 
-const Login = ({ history }) => {
-  const handleLogin = useCallback(
+const SignUp = ({ history }) => {
+  const handleSignUp = useCallback(
     async event => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
         await firebase
           .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
+          .createUserWithEmailAndPassword(email.value, password.value);
         history.push("/CommentApp");
       } catch (error) {
         alert(error);
@@ -20,6 +20,7 @@ const Login = ({ history }) => {
     },
     [history]
   );
+
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
@@ -28,8 +29,8 @@ const Login = ({ history }) => {
 
   return (
     <div className="login-page">
-      <form action="" className="login-form" onSubmit={handleLogin}>
-        <h1>登入</h1>
+      <form action="" className="login-form" onSubmit={handleSignUp}>
+        <h1>註冊</h1>
         <div className="login-form__field">
           <input
             name="email"
@@ -42,11 +43,11 @@ const Login = ({ history }) => {
           <input name="password" type="password" placeholder="Password" />
         </div>
         <button type="submit" className="login-form__button">
-          登入
+          註冊
         </button>
         <div className="bottom-text">
           <li>
-            還沒帳號嗎? <Link to="./SignUp">註冊</Link>
+            已經有帳號了? <Link to="./Login">登入</Link>
           </li>
         </div>
       </form>
@@ -54,4 +55,4 @@ const Login = ({ history }) => {
   );
 };
 
-export default withRouter(Login);
+export default withRouter(SignUp);
