@@ -14,11 +14,15 @@ function Comment({ comment }) {
   });
   function _updateTimeString() {
     const duration = (+Date.now() - (comment.createdTime.seconds*1000)) / 1000;
+    const time = new Date(comment.createdTime.seconds *1000)
+    const year = time.getFullYear()
+    const month = time.getMonth()
+    const date = time.getDate()
     setTimeString(
       duration > 60
         ? duration > 3600
           ? duration > 86400
-            ? `${comment.createdTime.toLocaleDateString()}`
+            ? `${year}年${month}日${date}日`
             : `${Math.round(duration / 60 / 60)}小時前`
           : `${Math.round(duration / 60)}分鐘前`
         : `${Math.round(Math.max(duration, 1))}秒前`
