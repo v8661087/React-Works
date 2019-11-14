@@ -34,10 +34,15 @@ function CommentApp() {
   useEffect(() => {
     if (currentUser) {
       setUsername(currentUser.email);
+    }else{
+      if (localStorage.getItem("username")) {
+        const username = localStorage.getItem("username");
+        setUsername(username);
+      } 
     }
     fetchData();
   }, [fetchData]);
-
+  
   function handleNameChange(e) {
     setUsername(e.target.value);
   }
@@ -52,6 +57,10 @@ function CommentApp() {
         .add({ username, content, createdTime: new Date() });
       setContent("");
     }
+  }
+  
+  function handleBlur(){
+    localStorage.setItem("username",username)
   }
 
   if (loading) {
@@ -83,6 +92,7 @@ function CommentApp() {
         onNameChange={handleNameChange}
         onCommentChange={handleCommentChange}
         onSubmit={handleSubmit}
+        onBlur={handleBlur}
         username={username}
         content={content}
       />

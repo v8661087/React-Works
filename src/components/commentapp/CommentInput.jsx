@@ -5,7 +5,7 @@ function CommentInput({
   content,
   onNameChange,
   onCommentChange,
-  onSubmit
+  onSubmit,onBlur
 }) {
   const { currentUser } = useContext(AuthContext);
   return (
@@ -16,7 +16,7 @@ function CommentInput({
           <b> {username}</b>
         ) : (
           <div className="commentapp-field-input">
-            <input type="text" onChange={onNameChange} value={username} />
+            <input type="text" onChange={onNameChange} onBlur={onBlur} value={username} />
           </div>
         )}
       </div>
