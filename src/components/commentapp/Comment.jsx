@@ -22,7 +22,7 @@ function Comment({ comment }) {
       duration > 60
         ? duration > 3600
           ? duration > 86400
-            ? `${year}年${month}日${date}日`
+            ? `${year}年${month+1}月${date}日`
             : `${Math.round(duration / 60 / 60)}小時前`
           : `${Math.round(duration / 60)}分鐘前`
         : `${Math.round(Math.max(duration, 1))}秒前`
