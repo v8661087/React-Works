@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import CommentInput from "./CommentInput";
 import Comment from "./Comment";
-import "../../commentApp.scss";
 import { AuthContext } from "./Auth";
 import firebase from "../../firebase";
 import { Link } from "react-router-dom";

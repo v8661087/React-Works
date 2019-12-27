@@ -1,10 +1,8 @@
 import React from "react";
-import "./todolist.scss";
-import "./commentApp.scss";
+import "./css/app.scss";
 import { HashRouter} from "react-router-dom";
 import NavBar from "./components/NavBar";
-
-console.log("191114 1517")
+console.log("191227 1607")
 
 function App() {
     return (

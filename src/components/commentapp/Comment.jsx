@@ -42,18 +42,14 @@ function Comment({ comment }) {
         <span>{comment.username}： </span>
       </div>
       <p>{comment.content}</p>
-      {currentUser ? (
-        currentUser.email === comment.username ? (
+      {currentUser && (
+        currentUser.email === comment.username && (
           <span className="comment-delete" onClick={() => setModal(true)}>
             删除
           </span>
-        ) : (
-          ""
         )
-      ) : (
-        ""
       )}
-      {modal ? (
+      {modal && (
         <div className="modal">
           <div>
             <h1>確定要刪除嗎？</h1>
@@ -65,8 +61,6 @@ function Comment({ comment }) {
             删除
           </div>
         </div>
-      ) : (
-        ""
       )}
       <span className="comment-createdtime">{timeString}</span>
     </div>
