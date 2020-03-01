@@ -21,7 +21,7 @@ function List(props) {
                 className="list-item__input"
                 autoFocus
                 value={props.itemInput}
-                onChange={props.onChangeItem}
+                onChange={props.onItemChange}
                 onKeyUp={props.onItemKeyUp}
                 onBlur={() => props.onModifyDone(item)}
               />

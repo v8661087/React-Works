@@ -11,7 +11,6 @@ $phones-media: 479px;
     padding: 15px 0;
     text-align: center;
     border-bottom: 1px solid gray;
-    height: 111px;
     background: linear-gradient(
         45deg,
         rgba(71, 182, 156, 0.589),
@@ -92,7 +91,7 @@ $phones-media: 479px;
         &-title{
             display: inline-block;
             width: 90%;
-            
+            word-break: break-all;
         }
         &__input {
             background: $black;
