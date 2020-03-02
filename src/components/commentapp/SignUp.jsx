@@ -1,26 +1,21 @@
-import React, { useCallback, useContext } from "react";
+import React, { useContext } from "react";
 import { withRouter } from "react-router";
 import firebase from "../../firebase";
 import { AuthContext } from "./Auth";
 import { Redirect, Link } from "react-router-dom";
 
-const SignUp = ({ history }) => {
-  const handleSignUp = useCallback(
-    async event => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
-      try {
-        await firebase
-          .auth()
-          .createUserWithEmailAndPassword(email.value, password.value);
-        history.push("/CommentApp");
-      } catch (error) {
-        alert(error);
-      }
-    },
-    [history]
-  );
-
+const SignUp = () => {
+  const handleSignUp = async e => {
+    e.preventDefault();
+    const { email, password } = e.target.elements;
+    try {
+      await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email.value, password.value);
+    } catch (error) {
+      alert(error);
+    }
+  };
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
@@ -40,7 +35,12 @@ const SignUp = ({ history }) => {
           />
         </div>
         <div className="login-form__field">
-          <input name="password" type="password" placeholder="Password" />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            autoComplete="off"
+          />
         </div>
         <button type="submit" className="login-form__button">
           註冊

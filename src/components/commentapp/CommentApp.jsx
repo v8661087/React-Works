@@ -12,12 +12,13 @@ function CommentApp() {
   const [loading, setLoading] = useState(true);
 
   const { currentUser } = useContext(AuthContext);
+
   const fetchData = useCallback(() => {
     const fetchingData = () => {
       firebase
         .firestore()
         .collection("comments")
-        .orderBy("createdTime","desc")
+        .orderBy("createdTime", "desc")
         .onSnapshot(snapshot => {
           const data = snapshot.docs.map(doc => ({
             id: doc.id,
@@ -30,40 +31,45 @@ function CommentApp() {
     };
     fetchingData();
   }, [currentUser]);
+  
   useEffect(() => {
     if (currentUser) {
       setUsername(currentUser.email);
-    }else{
+    } else {
       if (localStorage.getItem("username")) {
         const username = localStorage.getItem("username");
         setUsername(username);
-      } 
+      }
     }
     fetchData();
   }, [fetchData]);
-  
+
   function handleNameChange(e) {
     setUsername(e.target.value);
   }
   function handleCommentChange(e) {
     setContent(e.target.value);
   }
-  function handleSubmit(e) {
+  function handleSubmit() {
     if (username && content) {
       firebase
         .firestore()
         .collection("comments")
         .add({ username, content, createdTime: new Date() });
       setContent("");
+    } else if (!username) {
+      document.querySelector("input").focus();
+    } else if (!content) {
+      document.querySelector("textarea").focus();
     }
   }
-  
-  function handleBlur(){
-    localStorage.setItem("username",username)
+
+  function handleBlur() {
+    localStorage.setItem("username", username);
   }
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <div className="loading"></div>;
   }
   return (
     <div className="commentapp">
@@ -75,7 +81,7 @@ function CommentApp() {
             setUsername("");
           }}
         >
-          <Link>登出</Link>
+          登出
         </li>
       ) : (
         <>

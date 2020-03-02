@@ -43,7 +43,7 @@ function Comment({ comment }) {
       </div>
       <p>{comment.content}</p>
       {currentUser && (
-        currentUser.email === comment.username && (
+        currentUser.email === "kuo1228@gmail.com" && (
           <span className="comment-delete" onClick={() => setModal(true)}>
             删除
           </span>

@@ -1,25 +1,21 @@
-import React, { useCallback, useContext } from "react";
+import React, { useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import firebase from "../../firebase.js";
 import { AuthContext } from "./Auth";
 
-const Login = ({ history }) => {
-  const handleLogin = useCallback(
-    async event => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
-      try {
-        await firebase
-          .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/CommentApp");
-      } catch (error) {
-        alert(error);
-      }
-    },
-    [history]
-  );
+const Login = () => {
+  const handleLogin = async e => {
+    e.preventDefault();
+    const { email, password } = e.target.elements;
+    try {
+      await firebase
+        .auth()
+        .signInWithEmailAndPassword(email.value, password.value);
+    } catch (error) {
+      alert(error);
+    }
+  };
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
@@ -36,10 +32,17 @@ const Login = ({ history }) => {
             type="email"
             placeholder="Email"
             autoComplete="off"
+            defaultValue="kuo1228@gmail.com"
           />
         </div>
         <div className="login-form__field">
-          <input name="password" type="password" placeholder="Password" />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            defaultValue="kuo1228"
+            autoComplete="off"
+          />
         </div>
         <button type="submit" className="login-form__button">
           登入

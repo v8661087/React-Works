@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { AuthContext } from "./Auth";
+
 function CommentInput({
   username,
   content,
   onNameChange,
   onCommentChange,
-  onSubmit,onBlur
+  onSubmit,
+  onBlur
 }) {
   const { currentUser } = useContext(AuthContext);
   return (
@@ -16,7 +18,12 @@ function CommentInput({
           <b> {username}</b>
         ) : (
           <div className="commentapp-field-input">
-            <input type="text" onChange={onNameChange} onBlur={onBlur} value={username} />
+            <input
+              type="text"
+              onChange={onNameChange}
+              onBlur={onBlur}
+              value={username}
+            />
           </div>
         )}
       </div>
