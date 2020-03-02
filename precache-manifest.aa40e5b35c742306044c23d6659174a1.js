@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "9bfa569b3d4e7a68c981",
-    "url": "/React-Works/static/css/main.f0d4cab0.chunk.css"
+    "revision": "f36514c649d2a48fff17",
+    "url": "/React-Works/static/css/main.c33a48f0.chunk.css"
   },
   {
-    "revision": "9bfa569b3d4e7a68c981",
-    "url": "/React-Works/static/js/main.01dbe0db.chunk.js"
+    "revision": "f36514c649d2a48fff17",
+    "url": "/React-Works/static/js/main.0780d476.chunk.js"
   },
   {
     "revision": "71479fc5dd82b67c74e2",
     "url": "/React-Works/static/js/runtime~main.911d5c7c.js"
   },
   {
-    "revision": "171d8f44e0772055abd3",
-    "url": "/React-Works/static/js/2.79d73646.chunk.js"
+    "revision": "c28ddc534e39dd6b2cf5",
+    "url": "/React-Works/static/js/2.729831b2.chunk.js"
   },
   {
     "revision": "981a9625d6d19f18cc5c290ccb0ee41b",
@@ -92,7 +92,7 @@ self.__precacheManifest = [
     "url": "/React-Works/static/media/night-snowing.19cb9f62.svg"
   },
   {
-    "revision": "a51f08cdacd9b4e65ff779ab7e9d30e6",
+    "revision": "44f601ceaaef8ef8e9e728c3fc99b799",
     "url": "/React-Works/index.html"
   }
 ];
