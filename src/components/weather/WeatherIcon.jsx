@@ -64,7 +64,6 @@ const weatherIcons = {
 
 const IconContainer = styled.div`
     flex-basis: 30%;
-
     svg {
         max-height: 110px;
     }
