@@ -4,14 +4,15 @@
   "private": true,
   "homepage": "https://v8661087.github.io/React-Works/",
   "dependencies": {
-    "@emotion/core": "^10.0.22",
-    "@emotion/styled": "^10.0.22",
-    "emotion-theming": "^10.0.19",
-    "firebase": "^7.2.3",
-    "gh-pages": "^2.1.1",
-    "node-sass": "^4.12.0",
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "emotion-theming": "^10.0.27",
+    "firebase": "^7.9.3",
+    "gh-pages": "^2.2.0",
+    "node-sass": "^4.13.1",
+    "react": "^16.13.0",
+    "react-app-polyfill": "^1.0.6",
+    "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^2.1.8"
   },
@@ -30,12 +31,14 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie 11"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "ie 11"
     ]
   }
 }
